@@ -3,11 +3,11 @@
 
 mod ffi;
 
-use std::{ptr, ffi::c_int};
 use crate::ffi::graal_create_isolate;
 use crate::ffi::graal_create_isolate_params_t;
 use crate::ffi::graal_isolate_t;
 use crate::ffi::graal_isolatethread_t;
+use std::{ffi::c_int, ptr};
 
 #[derive(Debug)]
 pub struct Isolate {
@@ -38,12 +38,8 @@ pub fn safe_graal_create_isolate(
 
     if result == 0 {
         Ok((
-            Isolate {
-                ptr: isolate_ptr,
-            },
-            IsolateThread {
-                ptr: thread_ptr,
-            },
+            Isolate { ptr: isolate_ptr },
+            IsolateThread { ptr: thread_ptr },
         ))
     } else {
         Err(result)
@@ -63,11 +59,6 @@ impl Drop for IsolateThread {
     }
 }
 
-
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -80,5 +71,4 @@ mod tests {
         // Check the result, expect an error.
         assert!(result.is_ok());
     }
-
 }
