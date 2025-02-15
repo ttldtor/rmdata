@@ -1,0 +1,22 @@
+[package]
+name = "rmdata"
+version = "0.1.0"
+edition = "2021"
+license = "BSL-1"
+license-file = "LICENSE.txt"
+authors = ["ttldtor"]
+
+[dependencies]
+
+[build-dependencies]
+reqwest = "0.12.12"
+zip = "2.2.2"
+toml = "0.8.20"
+tokio-macros = "2.5.0"
+tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
+
+[package.metadata.dxfeed.graalnativesdk]
+lib-name = "DxFeedGraalNativeSdk"
+version = "2.4.0"
+url-template = "https://dxfeed.jfrog.io/artifactory/maven-open/com/dxfeed/graal-native-sdk/{version}/graal-native-sdk-{version}-{cpu}-{os}.zip"
+
