@@ -117,8 +117,8 @@ async fn main() {
             //let build_type = env::var("PROFILE").unwrap();
             //<root or manifest path>/target/<profile>/
             //let to_dir = Path::new(&manifest_dir).join("target").join(build_type);
-            //let to_dir = Path::new(&manifest_dir).join(dll_name.as_str());
-            let to_dir = Path::new(&manifest_dir).join("target").join("debug").join("deps");
+            let to_dir = Path::new(&manifest_dir).join(dll_name.as_str());
+            //let to_dir = Path::new(&manifest_dir).join("target").join("debug").join("deps");
             //let to_dir = Path::new(&out_dir).join(dll_name.as_str());
 
             fs::copy(from_dir, to_dir).unwrap();

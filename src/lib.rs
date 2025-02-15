@@ -23,17 +23,11 @@ pub struct IsolateThread {
 
 /// Safe wrapper function for `graal_create_isolate`.
 pub fn safe_graal_create_isolate(
-    params: *mut graal_create_isolate_params_t, // Changed from `&mut` to raw pointer for flexibility
+    params: *mut graal_create_isolate_params_t,
 ) -> Result<(Isolate, IsolateThread), c_int> {
-    if params.is_null() {
-        return Err(1); // Arbitrary error code when null is passed
-    }
-
-    // Initialize raw pointers for isolate and thread
     let mut isolate_ptr: *mut graal_isolate_t = ptr::null_mut();
     let mut thread_ptr: *mut graal_isolatethread_t = ptr::null_mut();
 
-    // Call the unsafe external function
     let result = unsafe {
         graal_create_isolate(
             params,
@@ -42,7 +36,6 @@ pub fn safe_graal_create_isolate(
         )
     };
 
-    // Handle success and error cases
     if result == 0 {
         Ok((
             Isolate {
