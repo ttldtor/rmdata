@@ -5,13 +5,19 @@ use std::os::raw::{c_char, c_int, c_ulonglong};
 
 #[repr(C)]
 #[allow(non_camel_case_types)]
-pub struct __graal_isolate_t;
+pub struct __graal_isolate_t {
+    _unused: [u8; 0],
+}
+
 #[allow(non_camel_case_types)]
 pub type graal_isolate_t = __graal_isolate_t;
 
 #[repr(C)]
 #[allow(non_camel_case_types)]
-pub struct __graal_isolatethread_t;
+pub struct __graal_isolatethread_t {
+    _unused: [u8; 0],
+}
+
 #[allow(non_camel_case_types)]
 pub type graal_isolatethread_t = __graal_isolatethread_t;
 
